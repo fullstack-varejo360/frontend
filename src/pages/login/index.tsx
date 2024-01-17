@@ -12,7 +12,8 @@ export const Login = () => {
         resolver: zodResolver(schemaLogin)
     })
 
-    const {userLogin, userProfile} = useUser()
+    const {userLogin, goToRegister} = useUser()
+
 
   return (
     <StyledLogin>
@@ -26,7 +27,10 @@ export const Login = () => {
 
         <button type="submit">Entrar</button>
       </form>
-        <button onClick={()=>userProfile}>profile</button>
+      <div>
+        <h3>Crie uma conta</h3>
+        <button onClick={()=>goToRegister()}>Cadastro</button>
+      </div>
     </StyledLogin>
   );
 };

@@ -1,14 +1,12 @@
-//userProvider.tsx
-
-import {
-  createContext,
-  useEffect /*, useState*/,
-  useState,
-} from "react";
+import { createContext, useEffect /*, useState*/, useState } from "react";
 import { api } from "../service/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { TLoginData } from "../validators/userValidator";
+import {
+  TLoginData,
+  TRegisterData,
+  TUserUpdate,
+} from "../validators/userValidator";
 import { IUser, UserContextValues, UserProviderProps } from "./@types";
 
 interface LoginResponse {
@@ -19,36 +17,42 @@ export const UserContext = createContext({} as UserContextValues);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
+  const [modal, showModal] = useState<String | null>(null);
 
-  // const token = localStorage.getItem("@Varejo360:TOKEN");
+  const token = localStorage.getItem("@Varejo360:TOKEN");
 
-  const navigate = useNavigate()
+  const valor = localStorage.getItem("@Varejo360:TOKEN");
+  if (valor !== null) {
+    console.log("Valor recuperado:", valor);
+  } else {
+    console.log("Chave não encontrada ou localStorage não disponível");
+  }
 
-  const token = localStorage.getItem("Varejo360:TOKEN");
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const token = localStorage.getItem("Varejo360:TOKEN");
+    const token = localStorage.getItem("@Varejo360:TOKEN");
 
     if (!token) {
       return;
     }
     api.defaults.headers.common.Authorization = `Bearer ${token}`;
-    userProfile()
-  }, [token]);
+  }, []);
 
   const userProfile = async () => {
     const token = localStorage.getItem("@Varejo360:TOKEN");
     if (token) {
       try {
-        const response = await api.get(`/users/profile/`, {
+        const response = await api.get(`/users/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         setUser(response.data);
-        console.log(response.data)
+        console.log(response.data);
         localStorage.setItem("@Varejo360:userID", response.data.id);
         navigate("/dashboard");
-        console.log("cheguei")
+        console.log("cheguei");
       } catch (error) {
         console.log(error);
       }
@@ -61,9 +65,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
       const { token } = response.data;
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
-      localStorage.setItem("Varejo360:TOKEN", token);
+      localStorage.setItem("@Varejo360:TOKEN", token);
       toast.success("Login com sucesso");
-      
+      console.log(data);
       console.log(token);
 
       navigate("/dashboard");
@@ -73,8 +77,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     }
   };
 
-  
-
   const userLogout = () => {
     setUser(null);
     localStorage.removeItem("@Varejo360:TOKEN");
@@ -82,9 +84,88 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     navigate("/");
   };
 
+  const userCreate = async (data: TRegisterData) => {
+    try {
+      const response = await api.post<IUser>("/users", data);
+      console.log(response.data);
+
+      toast.success("Cadastro com sucesso");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      toast.error(`${error}`);
+    }
+  };
+
+  const userUpdate = async (userId: number, data: TUserUpdate) => {
+    if (token) {
+      try {
+        const response = await api.patch<IUser>(`/users/${userId}`, data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+        toast.success("Atualização com sucesso");
+        navigate("/dashboard");
+      } catch (error) {
+        console.log(error);
+        toast.error(`${error}`);
+      }
+    }
+  };
+
+  const userDelete = async (userId: number) => {
+    if (token) {
+      try {
+        const response = await api.delete<void>(`/users/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(response.data);
+        toast.success("Usuário deletado");
+
+        localStorage.removeItem("@ContactHub:TOKEN");
+        localStorage.removeItem("@ContactHub:ID");
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+        toast.error(`${error}`);
+      }
+    }
+  };
+
+  useEffect(() => {
+    userProfile();
+  }, [token]);
+
+  const goToRegister = () => {
+    navigate("/register");
+  };
+
+  const goToLogin = () => {
+    navigate("/");
+  };
+
   return (
     <UserContext.Provider
-      value={{ user, setUser, userLogin, userProfile, userLogout }}
+      value={{
+        navigate,
+        token,
+        user,
+        setUser,
+        modal,
+        showModal,
+        userLogin,
+        userProfile,
+        userLogout,
+        userCreate,
+        userUpdate,
+        userDelete,
+        goToRegister,
+        goToLogin,
+      }}
     >
       {children}
     </UserContext.Provider>

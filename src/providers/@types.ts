@@ -1,7 +1,13 @@
 import { ReactNode } from "react";
-import { TLoginData } from "../validators/userValidator";
+import { TLoginData, TRegisterData, TUserUpdate } from "../validators/userValidator";
+import { NavigateFunction } from "react-router-dom";
+import { TProductCreateData, TProductUpdateData } from "../validators/productValidator";
 
 export interface UserProviderProps {
+    children: ReactNode;
+  }
+
+  export interface ProductProviderProps {
     children: ReactNode;
   }
   
@@ -16,15 +22,47 @@ export interface UserProviderProps {
     accountNonExpired:boolean;
     credentialsNonExpired:boolean;
   }
+
+  export interface IProduct {
+    id: number;
+    code: number;
+    name: string;
+  }
   
   export interface LoginResponse {
     token: string;
   }
   
   export interface UserContextValues {
+    navigate: NavigateFunction;
+    token: string | null;
     user: IUser | null;
     setUser: React.Dispatch<React.SetStateAction<IUser | null>>;
+    modal: String | null;
+    showModal: React.Dispatch<React.SetStateAction<String | null>>;
     userLogin: (data: TLoginData) => Promise<void>;
     userProfile: () => Promise<void>;
     userLogout: () => void;
+    userCreate: (data: TRegisterData) => Promise<void>
+    userUpdate: (userId: number, data: TUserUpdate) => Promise<void>
+    userDelete: (userId: number) => Promise<void>
+    goToRegister: () => void
+    goToLogin: () => void
+  }
+
+  export interface ProductContextValues {
+    products: IProduct[]
+    setProducts: React.Dispatch<React.SetStateAction<IProduct[]>>
+    singleProduct: IProduct | null
+    setSingleProduct: React.Dispatch<React.SetStateAction<IProduct | null>>
+    editProduct: IProduct | null
+    setEditProduct: React.Dispatch<React.SetStateAction<IProduct | null>>
+    searchedItem: string
+    setSearchedItem: React.Dispatch<React.SetStateAction<string>>
+    productCreate: (data: TProductCreateData) => Promise<void>
+    productListAll: () => Promise<void>
+    productListPag: () => Promise<void>
+    productRetrive: (productId: number) => Promise<void>
+    productUpdate: (productId: number, data: TProductUpdateData) => Promise<void>
+    productDelete: (productId: number) => Promise<void>
   }

@@ -88,7 +88,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const userUpdate = async (userId: number, data: TUserUpdate) => {
     if (token) {
       try {
-        const response = await api.patch<IUser>(`/users/${userId}`, data, {
+        const response = await api.put<IUser>(`/users/${userId}`, data, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

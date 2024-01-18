@@ -87,7 +87,7 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
   const productUpdate = async (productId: number, data: TProductUpdateData) => {
     if (token) {
       try {
-        const response = await api.patch<IProduct>(
+        const response = await api.put<IProduct>(
           `/product/${productId}`,
           data,
           {
@@ -96,7 +96,9 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
             },
           }
         );
+        
         setSingleProduct(response.data);
+      
         toast.success("Atualização com sucesso");
       } catch (error) {
         console.log(error);
@@ -153,9 +155,6 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     productListPag();
   }, [token, singleProduct, editProduct, sortDir, sortField, page]);
 
-  useEffect(() => {
-    productListAll();
-  }, [searchedItem]);
 
   return (
     <ProductContext.Provider

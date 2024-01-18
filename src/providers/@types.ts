@@ -32,7 +32,7 @@ export interface IUser {
 
 export interface IProduct {
   id: number;
-  code: number;
+  code: string;
   name: string;
 }
 

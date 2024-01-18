@@ -14,6 +14,7 @@ export const ProductCard = (product: IProduct) => {
     setProducts(filteredProducts);
   };
 
+ 
   return (
     <StyledProductCard>
       <div className="info">

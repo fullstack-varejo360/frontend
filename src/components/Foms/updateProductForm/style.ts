@@ -29,13 +29,14 @@ display: flex;
     h3 {
       align-self: center;
       color: var(--color-gray-0);
-      font-size: .85rem;
+      font-size: 20px;
     }
 
     label {
       color: var(--color-gray-0);
       font-size: 0.7rem;
       margin: 10px 0;
+      font-size: 15px;
     }
 
     input {
@@ -45,12 +46,12 @@ display: flex;
       border-radius: 4px;
       height: 40px;
       padding: 0 10px;
-      font-size: 0.95rem;
+      font-size: 15px;
     }
 
     input::placeholder {
       color: rgba(134, 142, 150, 1);
-      font-size: 0.85rem;
+      font-size: 15px;
     }
 
     div {
@@ -75,7 +76,7 @@ display: flex;
       margin-top: 20px;
       height: 40px;
       text-align: center;
-      font-size: 1rem;
+      font-size: 15px;
     }
 
   }

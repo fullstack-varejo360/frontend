@@ -11,9 +11,9 @@ import { FaArrowLeft } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { CreateProducttForm } from "../../components/Foms/createProductFrom";
+import { UpdateProductForm } from "../../components/Foms/updateProductForm";
 
 export const Dashboard = () => {
- 
   const { user, userLogout } = useUser();
   const {
     products,
@@ -27,9 +27,8 @@ export const Dashboard = () => {
     changeSortDir,
     sortFieldToCode,
     sortFieldToName,
-    
+    editProduct,
   } = useProduct();
-
 
   useEffect(() => {
     const search = async () => {
@@ -43,7 +42,9 @@ export const Dashboard = () => {
             product.code.toString().includes(searchedItem)
           );
         });
+        console.log(searchedProducts);
         setProducts(searchedProducts);
+        console.log(searchedItem);
       }
     };
     search();
@@ -51,6 +52,7 @@ export const Dashboard = () => {
 
   return (
     <StyledDashboard>
+      {editProduct ? <UpdateProductForm /> : null}
       <section className="perfil">
         <div>
           <h3>{user?.name}</h3>
@@ -80,9 +82,7 @@ export const Dashboard = () => {
             </span>
           </div>
 
-          <div className="action">
-            Ações
-          </div>
+          <div className="action">Ações</div>
         </section>
         {products?.map((product) => (
           <ProductCard
@@ -91,6 +91,7 @@ export const Dashboard = () => {
             code={product.code}
             id={product.id}
           />
+          
         ))}
       </ul>
 
@@ -103,8 +104,7 @@ export const Dashboard = () => {
         </button>
       </div>
 
-      <CreateProducttForm/>
-      
+      <CreateProducttForm />
     </StyledDashboard>
   );
 };

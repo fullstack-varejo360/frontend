@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const productCreateSchema = z.object({
-  code: z.string(),
-  name: z.string(),
+  code: z.string().min(1,"Código obrigatório"),
+  name: z.string().min(1,"Nome obrigatório"),
 });
 
 export const productUpdateSchema = z.object({

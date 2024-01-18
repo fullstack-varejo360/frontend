@@ -1,16 +1,16 @@
 import {z} from "zod"
 
 export const schemaRegister = z.object({
-    name: z.string(),
-    email: z.string().email(),
-    password: z.string(),
+    name: z.string().min(1,"Nome obrigatório"),
+    email: z.string().email("Deve ser um e-mail válido"),
+    password: z.string().min(1,"Senha obrigatória"),
 })
 
 export type TRegisterData = z.infer<typeof schemaRegister>
 
 export const schemaLogin = z.object({
     email: z.string().email("Deve ser um e-mail"),
-    password: z.string().nonempty("Senha obrigatória")
+    password: z.string().min(1,"Senha obrigatória")
 })
 
 export type TLoginData = z.infer<typeof schemaLogin>

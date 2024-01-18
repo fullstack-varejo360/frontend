@@ -8,7 +8,7 @@ import { useUser } from "../../hooks/useUser";
 
 
 export const Login = () => {
-    const {register, handleSubmit} = useForm<TLoginData>({
+    const {register, handleSubmit, formState: { errors }} = useForm<TLoginData>({
         resolver: zodResolver(schemaLogin)
     })
 
@@ -22,8 +22,10 @@ export const Login = () => {
       <form onSubmit={handleSubmit(userLogin)}>
         <label htmlFor="email">Email</label>
         <input type="email" id="email" {...register("email")}/>
+        {errors.email?.message && <p>{errors.email?.message}</p>}
         <label htmlFor="password">Senha</label>
         <input type="password" id="password" {...register("password")}/>
+        {errors.password?.message && <p>{errors.password?.message}</p>}
 
         <button type="submit">Entrar</button>
       </form>

@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { useUser } from "../../../hooks/useUser";
 
 export const UpdateProductForm = () => {
-  const { register, handleSubmit, reset } = useForm<TProductUpdateData>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<TProductUpdateData>({
     resolver: zodResolver(productUpdateSchema),
   });
 
@@ -62,6 +62,7 @@ export const UpdateProductForm = () => {
                 placeholder="Digite o código..."
                 {...register("code")}
               />
+              {errors.code?.message && <p>{errors.code?.message}</p>}
             </div>
             <div>
               <label htmlFor="name">Nome</label>
@@ -71,6 +72,7 @@ export const UpdateProductForm = () => {
                 placeholder="Digite o nome..."
                 {...register("name")}
               />
+              {errors.name?.message && <p>{errors.name?.message}</p>}
             </div>
           </section>
 

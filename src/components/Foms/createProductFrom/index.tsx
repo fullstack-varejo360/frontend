@@ -6,7 +6,7 @@ import { StyledCreateProductForm } from "./style";
 
 
 export const CreateProducttForm = () => {
-  const { register, handleSubmit, reset } = useForm<TProductCreateData>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<TProductCreateData>({
     resolver: zodResolver(productCreateSchema),
   });
 
@@ -30,6 +30,7 @@ export const CreateProducttForm = () => {
               placeholder="Digite o código..."
               {...register("code")}
             />
+            {errors.code?.message && <p>{errors.code?.message}</p>}
           </div>
           <div>
             <label htmlFor="name">Nome</label>
@@ -39,6 +40,7 @@ export const CreateProducttForm = () => {
               placeholder="Digite o nome..."
               {...register("name")}
             />
+            {errors.name?.message && <p>{errors.name?.message}</p>}
           </div>
         </section>
 

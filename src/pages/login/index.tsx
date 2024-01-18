@@ -3,7 +3,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { StyledLogin } from "./style";
 import { TLoginData, schemaLogin } from "../../validators/userValidator";
 import { useUser } from "../../hooks/useUser";
-import React, { useState } from "react";
 import { Switch } from "@mui/material";
 
 export const Login = () => {

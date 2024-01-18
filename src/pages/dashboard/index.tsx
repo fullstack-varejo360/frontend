@@ -105,10 +105,10 @@ export const Dashboard = () => {
 
       <div className="btnList">
         <button onClick={() => prevPage()}>
-          <FaArrowLeft />
+          <FaArrowLeft size={20}/>
         </button>
         <button onClick={() => nextPage()}>
-          <FaArrowRight />
+          <FaArrowRight size={20}/>
         </button>
       </div>
 

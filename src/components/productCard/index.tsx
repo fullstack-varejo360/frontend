@@ -4,7 +4,6 @@ import { StyledProductCard } from "./style";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { TiPencil } from "react-icons/ti";
 
-
 export const ProductCard = (product: IProduct) => {
   const { products, setProducts, productDelete, setEditProduct } = useProduct();
 
@@ -14,7 +13,6 @@ export const ProductCard = (product: IProduct) => {
     setProducts(filteredProducts);
   };
 
- 
   return (
     <StyledProductCard>
       <div className="info">
@@ -24,12 +22,17 @@ export const ProductCard = (product: IProduct) => {
       </div>
 
       <div className="btn">
-        <button className="upd" onClick={() => setEditProduct(product)}>
-        <TiPencil />
-        </button>
-        <button className="del" onClick={() => deleteHandler(product.id)}>
-        <FaRegTrashAlt />
-        </button>
+        <div className="upd" onClick={() => setEditProduct(product)}>
+          <button>
+            <TiPencil size={15} />
+          </button>
+        </div>
+
+        <div className="del" onClick={() => deleteHandler(product.id)}>
+          <button className="del">
+            <FaRegTrashAlt className="del" size={15} />
+          </button>
+        </div>
       </div>
     </StyledProductCard>
   );

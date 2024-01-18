@@ -34,8 +34,13 @@ export const StyledRegister = styled.div`
       padding: 5px;
       border: 2px solid var(--color-gray-400);
       border-radius: 6px;
+      font-size: 16px;
+    }
+    input::placeholder {
+      font-size: 16px;
     }
     button {
+      font-size: 18px;
       margin-top: 20px;
       height: 30px;
       background-color: var(--color-blue-300);

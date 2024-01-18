@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { StyleModalWrapper } from "../../modalWrapper/style";
 import {
   TProductUpdateData,
@@ -8,7 +8,7 @@ import {
 import { useProduct } from "../../../hooks/useProduct";
 import { StyledUpdateProductForm } from "./style";
 import { useEffect } from "react";
-import { useUser } from "../../../hooks/useUser";
+
 
 export const UpdateProductForm = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<TProductUpdateData>({

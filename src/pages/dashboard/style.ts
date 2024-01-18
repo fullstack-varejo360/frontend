@@ -41,6 +41,7 @@ export const StyledDashboard = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 16px;
     }
     button:hover {
       background-color: var(--color-blue-900);
@@ -61,7 +62,7 @@ export const StyledDashboard = styled.div`
       text-align: center;
       font-size: 15px;
       color: var(--color-gray-900);
-      border: 1px solid var(--color-gray-400);
+      border: 2px solid var(--color-gray-400);
       align-items: center;
       position: relative;
       cursor: pointer;

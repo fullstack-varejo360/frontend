@@ -23,22 +23,32 @@ export const StyledProductCard = styled.li`
   }
 
   .btn {
-    width: 65px;
+    width: 62px;
     justify-content: space-around;
     display: flex;
   
-
-    button {
-      background-color: var(--color-gray-200);
+    div{
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-left: 1px solid var(--color-gray-400);
-      
-      padding: 5px;
     }
-    button:hover {
+    button {
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+    }
+    div:hover {
+      background-color: var(--color-blue-300);
+    }
+    button:hover{
       background-color: var(--color-blue-300);
     }
   }
 
-  @media (min-width: 726px) {
-  }
+  
 `;

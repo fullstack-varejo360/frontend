@@ -10,12 +10,27 @@ export const StyledDashboard = styled.div`
   align-items: center;
   margin: 0 auto;
 
+  .darkMode{
+    display: flex;
+    align-items: center;
+    h4{
+      font-size: 12px;
+    }
+  }
+
   .perfil {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+
+    h3 {
+      font-size: 18px;
+    }
+    h4 {
+      font-size: 14px;
+    }
 
     button {
       border-radius: 8px;
@@ -37,12 +52,15 @@ export const StyledDashboard = styled.div`
     text-align: center;
     max-width: 100%;
     border: 1px solid var(--color-gray-400);
+    background-color: var(--color-gray-300);
     div {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       text-align: center;
+      font-size: 15px;
+      color: var(--color-gray-900);
       border: 1px solid var(--color-gray-400);
       align-items: center;
       position: relative;
@@ -63,6 +81,11 @@ export const StyledDashboard = styled.div`
       padding: 5px;
     }
   }
+
+  h1{
+    font-size: 18px;
+  }
+
   ul {
     display: flex;
     flex-direction: column;

@@ -18,9 +18,19 @@ export const UserContext = createContext({} as UserContextValues);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [modal, showModal] = useState<String | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const token = localStorage.getItem("@Varejo360:TOKEN");
 
+  if (isDarkMode) {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
+  }
+
+  // const toggleDarkMode = () => {
+  //   document.body.classList.toggle("dark-mode");
+  // };
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,6 +70,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       toast.success("Login com sucesso");
       navigate("/dashboard");
     } catch (error) {
+      localStorage.removeItem("@Varejo360:TOKEN");
+      localStorage.removeItem("@Varejo360:userID");
       console.log(error);
       toast.error("Dados email/senha inválida");
     }
@@ -79,7 +91,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
       toast.success("Cadastro com sucesso");
       navigate("/");
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error.request.response);
       toast.error(`${error.request.response}`);
     }
@@ -96,7 +108,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         setUser(response.data);
         toast.success("Atualização com sucesso");
         navigate("/dashboard");
-      } catch (error:any) {
+      } catch (error: any) {
         console.log(error.request.response);
         toast.error(`${error.request.response}`);
       }
@@ -117,7 +129,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         localStorage.removeItem("@Varejo360:TOKEN");
         localStorage.removeItem("@Varejo360:ID");
         navigate("/");
-      } catch (error:any) {
+      } catch (error: any) {
         console.log(error.request.response);
         toast.error(`${error.request.response}`);
       }
@@ -153,6 +165,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         userDelete,
         goToRegister,
         goToLogin,
+        isDarkMode,
+        setIsDarkMode,
       }}
     >
       {children}

@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const StyledCreateProductForm = styled.div`
   width: 100%;
   padding: 20px;
+  h3{
+    font-size: 16px;
+  }
   form {
     width: 100%;
     display: flex;
@@ -16,6 +19,9 @@ export const StyledCreateProductForm = styled.div`
       div {
         display: flex;
         flex-direction: column;
+        label{
+          font-size: 14px;
+        }
         input{
           width: 100%;
           padding: 5px;

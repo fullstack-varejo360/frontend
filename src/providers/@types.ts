@@ -55,6 +55,9 @@ export interface UserContextValues {
   userDelete: (userId: number) => Promise<void>;
   goToRegister: () => void;
   goToLogin: () => void;
+  // toggleDarkMode: () => void;
+  isDarkMode: boolean
+  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface ProductContextValues {

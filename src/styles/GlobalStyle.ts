@@ -1,6 +1,6 @@
 //GlobalStyle.ts
 
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
    :root {
@@ -27,7 +27,7 @@ export default createGlobalStyle`
   }
   
   .dark-mode {
-    --color-blue-900: #0d47a1;
+    --color-blue-900: #0d47a2;
     --color-blue-800: #1565c0;
     --color-blue-700: #1976d2;
     --color-blue-600: #1e88e5;
@@ -48,9 +48,7 @@ export default createGlobalStyle`
 
     font-size: 60%;   
   }
-  /* font-size: 16px;
-  1rem = 10px
-  */
+ 
 
   @media (min-width: 700px) {
     :root {
@@ -78,12 +76,13 @@ export default createGlobalStyle`
     overflow-x: hidden;
   }
 
-  .dar {
+  .dark-mode {
     background: var(--color-gray-900);
     color: var(--color-gray-300);
     -webkit-font-smoothing: antialiased;
 
     overflow-x: hidden;
+
   }
 
   body, input, button, textarea {
@@ -98,4 +97,9 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  .Toastify__toast-body {
+  font-size: 12px; /* Ajuste o tamanho conforme necessário */
+}
+  
 `;

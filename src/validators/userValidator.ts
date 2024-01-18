@@ -1,8 +1,8 @@
 import {z} from "zod"
 
 export const schemaRegister = z.object({
-    name: z.string().min(1,"Nome obrigatório"),
-    email: z.string().email("Deve ser um e-mail válido"),
+    name: z.string().min(1,"Nome obrigatório").max(30,"Máximo de 30 caracteres"),
+    email: z.string().email("Deve ser um e-mail válido").max(30,"Máximo de 30 caracteres"),
     password: z.string().min(1,"Senha obrigatória"),
 })
 

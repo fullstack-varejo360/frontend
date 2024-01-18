@@ -12,9 +12,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { CreateProducttForm } from "../../components/Foms/createProductFrom";
 import { UpdateProductForm } from "../../components/Foms/updateProductForm";
+import { Switch } from "@mui/material";
 
 export const Dashboard = () => {
-  const { user, userLogout } = useUser();
+  const { user, userLogout, isDarkMode, setIsDarkMode } = useUser();
   const {
     products,
     searchedItem,
@@ -52,11 +53,20 @@ export const Dashboard = () => {
   return (
     <StyledDashboard>
       {editProduct ? <UpdateProductForm /> : null}
+
+      <div className="darkMode">
+          <h4>Dark Mode</h4>
+          <Switch
+            checked={isDarkMode}
+            onChange={(event) => setIsDarkMode(event.target.checked)}
+          />
+        </div>
       <section className="perfil">
         <div>
           <h3>{user?.name}</h3>
           <h4>{user?.email}</h4>
         </div>
+       
         <button onClick={() => userLogout()}>Logout</button>
       </section>
 

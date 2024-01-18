@@ -9,6 +9,14 @@ export const StyledLogin = styled.div`
   padding: 20px;
   max-width: 460px;
   margin: 50px auto;
+
+  .darkMode{
+    display: flex;
+    align-items: center;
+    h4{
+      font-size: 12px;
+    }
+  }
   h1 {
     text-align: center;
     font-size: 44px;
@@ -42,6 +50,7 @@ export const StyledLogin = styled.div`
     }
   }
   div {
+    font-size: 18px;
     display: flex;
     margin-top: 20px;
     justify-content: flex-end;

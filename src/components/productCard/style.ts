@@ -15,6 +15,8 @@ export const StyledProductCard = styled.li`
     display: flex;
     align-items: center;
     div {
+      font-size: 14px;
+      color: var(--color-gray-900);
       border-left: 1px solid var(--color-gray-400);
       align-items: center;
     }

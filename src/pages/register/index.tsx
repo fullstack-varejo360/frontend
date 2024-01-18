@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { TRegisterData, schemaRegister } from "../../validators/userValidator";
 import { StyledRegister } from "./style";
 import { useUser } from "../../hooks/useUser";
+import { Switch } from "@mui/material";
 
 export const Register = () => {
   const {
@@ -13,10 +14,17 @@ export const Register = () => {
     resolver: zodResolver(schemaRegister),
   });
 
-  const { userCreate, goToLogin } = useUser();
+  const { userCreate, goToLogin, isDarkMode, setIsDarkMode } = useUser();
 
   return (
     <StyledRegister>
+      <div className="darkMode">
+        <h4>Dark Mode</h4>
+        <Switch
+          checked={isDarkMode}
+          onChange={(event) => setIsDarkMode(event.target.checked)}
+        />
+      </div>
       <h1>Varejo360</h1>
       <h2>Cadastrar</h2>
 

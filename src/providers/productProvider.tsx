@@ -31,9 +31,9 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
       });
       setSingleProduct(response.data)
       toast.success("Cadastro com sucesso");
-    } catch (error) {
-      console.log(error);
-      toast.error(`${error}`);
+    } catch (error:any) {
+      console.log(error.request.response);
+      toast.error(`${error.request.response}`);
     }
   };
 
@@ -100,9 +100,9 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         setSingleProduct(response.data);
       
         toast.success("Atualização com sucesso");
-      } catch (error) {
-        console.log(error);
-        toast.error(`${error}`);
+      } catch (error:any) {
+        console.log(error.request.response);
+        toast.error(`${error.request.response}`);
       }
     }
   };
@@ -117,9 +117,9 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         });
         console.log(response.data);
         toast.success("Produto deletado");
-      } catch (error) {
-        console.log(error);
-        toast.error(`${error}`);
+      } catch (error:any) {
+        console.log(error.request.response);
+        toast.error(`${error.request.response}`);
       }
     }
   };

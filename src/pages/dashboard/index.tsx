@@ -42,9 +42,8 @@ export const Dashboard = () => {
             product.code.toString().includes(searchedItem)
           );
         });
-        console.log(searchedProducts);
+
         setProducts(searchedProducts);
-        console.log(searchedItem);
       }
     };
     search();
@@ -91,7 +90,6 @@ export const Dashboard = () => {
             code={product.code}
             id={product.id}
           />
-          
         ))}
       </ul>
 

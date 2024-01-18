@@ -79,9 +79,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
       toast.success("Cadastro com sucesso");
       navigate("/");
-    } catch (error) {
-      console.log(error);
-      toast.error(`${error}`);
+    } catch (error:any) {
+      console.log(error.request.response);
+      toast.error(`${error.request.response}`);
     }
   };
 
@@ -96,9 +96,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         setUser(response.data);
         toast.success("Atualização com sucesso");
         navigate("/dashboard");
-      } catch (error) {
-        console.log(error);
-        toast.error(`${error}`);
+      } catch (error:any) {
+        console.log(error.request.response);
+        toast.error(`${error.request.response}`);
       }
     }
   };
@@ -117,9 +117,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         localStorage.removeItem("@Varejo360:TOKEN");
         localStorage.removeItem("@Varejo360:ID");
         navigate("/");
-      } catch (error) {
-        console.log(error);
-        toast.error(`${error}`);
+      } catch (error:any) {
+        console.log(error.request.response);
+        toast.error(`${error.request.response}`);
       }
     }
   };

@@ -47,7 +47,6 @@ export const UpdateProductForm = () => {
   return (
     <StyleModalWrapper>
       <StyledUpdateProductForm>
-        <h3>Editar Produto</h3>
         <form onSubmit={handleSubmit(submit)}>
           <section>
             <div className="header">

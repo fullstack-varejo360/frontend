@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 export const StyledDashboard = styled.div`
   width: 100vw;
+  max-width: 460px;
   height: 100vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
 
   .perfil {
     display: flex;
@@ -19,8 +21,14 @@ export const StyledDashboard = styled.div`
       border-radius: 8px;
       height: 30px;
       padding: 5px;
-      background-color: var(--color-blue-900);
+      background-color: var(--color-blue-300);
       color: var(--color-gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button:hover {
+      background-color: var(--color-blue-900);
     }
   }
 
@@ -28,21 +36,26 @@ export const StyledDashboard = styled.div`
     display: flex;
     text-align: center;
     max-width: 100%;
-    border: 1px solid white;
+    border: 1px solid var(--color-gray-400);
     div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       text-align: center;
-      border: 1px solid white;
+      border: 1px solid var(--color-gray-400);
       align-items: center;
       position: relative;
       cursor: pointer;
-      
 
-      span{
+      span {
         position: absolute;
-        right:5px ;
-        top: 5px;
+        right: 5px;
+        top: 8px;
         z-index: 5;
+      }
+      span:hover {
+        color: var(--color-blue-400);
       }
     }
     .action {
@@ -57,39 +70,23 @@ export const StyledDashboard = styled.div`
     padding: 20px;
   }
 
-  .btnList{
+  .btnList {
     display: flex;
     min-width: 80px;
     justify-content: space-between;
-    button{
+    button {
       width: 30px;
       height: 30px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid var(--color-gray-400);
+      color: var(--color-gray-700);
+    }
+    button:hover {
+      color: var(--color-blue-700);
+      border: 1px solid var(--color-blue-700);
     }
   }
 `;
-
-// export const StyledCreateProductForm = styled.div`
-//   form {
-//     display: flex;
-//     flex-direction: column;
-//     z-index: 5;
-//     section {
-//       display: flex;
-//       div {
-//         display: flex;
-//         flex-direction: column;
-//       }
-//     }
-//     button{
-      
-//       /* pointer-events: none; */
-//     }
-//   }
-
-//   @media (min-width: 500px) {
-//   }
-// `;

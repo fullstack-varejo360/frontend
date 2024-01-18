@@ -1,39 +1,35 @@
 import styled from "styled-components";
 
 export const StyledUpdateProductForm = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 30px 14px;
-  
 
-  h2 {
-    color: var(--color-blue-1);
-    font-size: 2rem;
-  }
+ 
 
-  
   form {
     margin-top: 0px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: #212529;
+    background-color: var(--color-gray-400);
     border-radius: 4px;
     padding-top: 0;
-    
-    
-    
 
     h3 {
+      margin-top: 10px;
       align-self: center;
-      color: var(--color-gray-0);
+      color: var(--color-gray-900);
       font-size: 20px;
+    }
+    span{
+      margin-top: 10px;
     }
 
     label {
-      color: var(--color-gray-0);
+      color: var(--color-gray-900);
       font-size: 0.7rem;
       margin: 10px 0;
       font-size: 15px;
@@ -41,8 +37,8 @@ display: flex;
 
     input {
       width: 100%;
-      background-color: var(--color-gray-2);
-      color: rgba(134, 142, 150, 1);
+      background-color: var(--color-gray-400);
+      color: var(--color-gray-700);
       border-radius: 4px;
       height: 40px;
       padding: 0 10px;
@@ -50,7 +46,7 @@ display: flex;
     }
 
     input::placeholder {
-      color: rgba(134, 142, 150, 1);
+      color: var(--color-gray-600);
       font-size: 15px;
     }
 
@@ -61,9 +57,8 @@ display: flex;
       border-radius: 4px;
       padding: 0;
       justify-content: space-between;
-      
 
-      span{
+      span {
         cursor: pointer;
       }
     }
@@ -73,12 +68,15 @@ display: flex;
       background-color: #ff8d07;
       border-radius: 4px;
       color: white;
-      margin-top: 20px;
+      margin-top: 10px;
       height: 40px;
       text-align: center;
       font-size: 15px;
     }
-
+    p{
+      color: red;
+      font-size: 12px;
+    }
   }
 
   @media (min-width: 500px) {
@@ -86,7 +84,4 @@ display: flex;
       max-width: 400px;
     }
   }
-
-  
-  
 `;

@@ -43,7 +43,9 @@ export const CreateProducttForm = () => {
             {errors.name?.message && <p>{errors.name?.message}</p>}
           </div>
         </section>
+        <section>
 
+        </section>
         <button className="btnForm" type="submit">
           ADICIONAR
         </button>

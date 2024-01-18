@@ -1,4 +1,4 @@
-import { createContext, useEffect /*, useState*/, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { api } from "../service/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -21,13 +21,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   const token = localStorage.getItem("@Varejo360:TOKEN");
 
-  const valor = localStorage.getItem("@Varejo360:TOKEN");
-  if (valor !== null) {
-    console.log("Valor recuperado:", valor);
-  } else {
-    console.log("Chave não encontrada ou localStorage não disponível");
-  }
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,10 +42,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
           },
         });
         setUser(response.data);
-        console.log(response.data);
         localStorage.setItem("@Varejo360:userID", response.data.id);
         navigate("/dashboard");
-        console.log("cheguei");
       } catch (error) {
         console.log(error);
       }
@@ -67,9 +58,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
       localStorage.setItem("@Varejo360:TOKEN", token);
       toast.success("Login com sucesso");
-      console.log(data);
-      console.log(token);
-
       navigate("/dashboard");
     } catch (error) {
       console.log(error);
@@ -126,8 +114,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         console.log(response.data);
         toast.success("Usuário deletado");
 
-        localStorage.removeItem("@ContactHub:TOKEN");
-        localStorage.removeItem("@ContactHub:ID");
+        localStorage.removeItem("@Varejo360:TOKEN");
+        localStorage.removeItem("@Varejo360:ID");
         navigate("/");
       } catch (error) {
         console.log(error);

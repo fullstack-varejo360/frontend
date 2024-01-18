@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledSearchInput = styled.div`
-width: 100%;
+
 padding: 0;
 
   form {
@@ -24,24 +24,7 @@ padding: 0;
       font-size: 0.85rem;
     }
 
-    div {
-      display: flex;
-      align-items: center;
-      border-bottom: none;
-      justify-content: space-between;
-      width: 110px;
-      padding: 0;
-
-      button {
-        height: 40px;
-        width: 50px;
-        background-color: var(--color-gray-3);
-        color: white;
-        border-radius: 4px;
-        font-size: 0.7rem;
-        margin-left: 5px;
-        
-      }
+    
 
       .search{
         background-color: var(--color-blue-1);
@@ -55,5 +38,5 @@ padding: 0;
         padding: 0px 200px;
       }
     }
-  }
+
 `;

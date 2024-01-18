@@ -17,6 +17,10 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
   const [singleProduct, setSingleProduct] = useState<IProduct | null>(null);
   const [editProduct, setEditProduct] = useState<IProduct | null>(null);
   const [searchedItem, setSearchedItem] = useState<string>("");
+  const [page, setPage] = useState<number>(0);
+  const [sortField, setSortField] = useState<"name" | "code">("name");
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+  const [maxPage, setMaxPage] = useState<number>(0);
 
   const productCreate = async (data: TProductCreateData) => {
     try {
@@ -25,10 +29,8 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
-
+      setSingleProduct(response.data)
       toast.success("Cadastro com sucesso");
-      navigate("/");
     } catch (error) {
       console.log(error);
       toast.error(`${error}`);
@@ -37,12 +39,11 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
 
   const productListAll = async () => {
     try {
-      const response = await api.post<IProduct[]>("/product", {
+      const response = await api.get<IProduct[]>("/product", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
       setProducts(response.data);
     } catch (error) {
       console.log(error);
@@ -51,13 +52,16 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
 
   const productListPag = async () => {
     try {
-      const response = await api.get<any>("/product/pag", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(response.data.content);
+      const response = await api.get<any>(
+        `/product/pag?page=${page}&sortField=${sortField}&sortDir=${sortDir}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setProducts(response.data.content);
+      setMaxPage(response.data.totalPages);
     } catch (error) {
       console.log(error);
     }
@@ -111,7 +115,6 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         });
         console.log(response.data);
         toast.success("Produto deletado");
-        // setSingleProduct(null)
       } catch (error) {
         console.log(error);
         toast.error(`${error}`);
@@ -119,9 +122,36 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     }
   };
 
+  const nextPage = () => {
+    if (page < maxPage - 1) {
+      setPage(page + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (page >= 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const sortFieldToName = () => {
+    setSortField("name")
+  };
+
+  const sortFieldToCode = () => {
+    setSortField("code")
+  };
+
+  const changeSortDir = () =>{
+    setSortDir(currentDir => {
+      // Se o sortField atual é 'name', mude para 'code', e vice-versa.
+      return currentDir === "asc" ? "desc" : "asc";
+    })
+  }
+
   useEffect(() => {
     productListPag();
-  }, [token,singleProduct, editProduct]);
+  }, [token, singleProduct, editProduct, sortDir, sortField, page]);
 
   useEffect(() => {
     productListAll();
@@ -138,12 +168,23 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
         setEditProduct,
         searchedItem,
         setSearchedItem,
+        page,
+        setPage,
+        sortField,
+        setSortField,
+        sortDir,
+        setSortDir,
         productCreate,
         productListAll,
         productListPag,
         productRetrive,
         productUpdate,
         productDelete,
+        nextPage,
+        prevPage,
+        sortFieldToName,
+        sortFieldToCode,
+        changeSortDir
       }}
     >
       {children}

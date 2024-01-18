@@ -1,14 +1,12 @@
 import { z } from "zod";
 
 export const productCreateSchema = z.object({
-  user_id: z.number().max(15),
-  code: z.number().max(15),
+  code: z.string(),
   name: z.string(),
 });
 
 export const productUpdateSchema = z.object({
-  user_id: z.number().max(15).optional(),
-  code: z.number().max(15).optional(),
+  code: z.string().optional(),
   name: z.string().optional(),
 });
 

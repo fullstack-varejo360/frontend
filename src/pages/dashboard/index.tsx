@@ -3,32 +3,87 @@ import { StyledDashboard } from "./style";
 import { useUser } from "../../hooks/useUser";
 import { useProduct } from "../../hooks/useProduct";
 import { ProductCard } from "../../components/productCard";
+import { SearchInput } from "../../components/SearchInput";
+import { IProduct } from "../../providers/@types";
+import { api } from "../../service/api";
+import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
+import { CreateProducttForm } from "../../components/Foms/createProductFrom";
 
 export const Dashboard = () => {
-  const { userProfile, user, userUpdate, userLogout } = useUser();
-  const { products } = useProduct();
+ 
+  const { user, userLogout } = useUser();
+  const {
+    products,
+    searchedItem,
+    setProducts,
+    productListPag,
+    prevPage,
+    nextPage,
+    sortDir,
+    sortField,
+    changeSortDir,
+    sortFieldToCode,
+    sortFieldToName,
+    
+  } = useProduct();
 
-  // useEffect(() => {
-  //   userProfile();
-  // }, []);
 
-  console.log(products);
+  useEffect(() => {
+    const search = async () => {
+      if (searchedItem === "") {
+        productListPag();
+      } else {
+        const products = await api.get<IProduct[]>("/product");
+        const searchedProducts = products.data.filter((product) => {
+          return (
+            product.name.toLowerCase().includes(searchedItem.toLowerCase()) ||
+            product.code.toString().includes(searchedItem)
+          );
+        });
+        setProducts(searchedProducts);
+      }
+    };
+    search();
+  }, [searchedItem]);
 
   return (
     <StyledDashboard>
-      <h1>Dashboard</h1>
-      <section>
+      <section className="perfil">
         <div>
           <h3>{user?.name}</h3>
           <h4>{user?.email}</h4>
         </div>
-        <div>
-          <button>Editar</button>
-          <button onClick={() => userLogout()}>Logout</button>
-        </div>
+        <button onClick={() => userLogout()}>Logout</button>
       </section>
 
+      <h1>Catálogo de Leite</h1>
+
+      <SearchInput />
+
       <ul>
+        <section className="titles">
+          <div onClick={() => sortFieldToCode()}>
+            Código{" "}
+            <span onClick={() => changeSortDir()}>
+              {sortField === "code" &&
+                (sortDir === "asc" ? <IoIosArrowDown /> : <IoIosArrowUp />)}
+            </span>
+          </div>
+          <div onClick={() => sortFieldToName()}>
+            Nome{" "}
+            <span onClick={() => changeSortDir()}>
+              {sortField === "name" &&
+                (sortDir === "asc" ? <IoIosArrowDown /> : <IoIosArrowUp />)}
+            </span>
+          </div>
+
+          <div className="action">
+            Ações
+          </div>
+        </section>
         {products?.map((product) => (
           <ProductCard
             key={product.id}
@@ -38,6 +93,18 @@ export const Dashboard = () => {
           />
         ))}
       </ul>
+
+      <div className="btnList">
+        <button onClick={() => prevPage()}>
+          <FaArrowLeft />
+        </button>
+        <button onClick={() => nextPage()}>
+          <FaArrowRight />
+        </button>
+      </div>
+
+      <CreateProducttForm/>
+      
     </StyledDashboard>
   );
 };

@@ -1,6 +1,8 @@
 import { useProduct } from "../../hooks/useProduct";
 import { IProduct } from "../../providers/@types";
 import { StyledProductCard } from "./style";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { TiPencil } from "react-icons/ti";
 
 
 export const ProductCard = (product: IProduct) => {
@@ -14,14 +16,19 @@ export const ProductCard = (product: IProduct) => {
 
   return (
     <StyledProductCard>
-      <h4>Código</h4>
-      <h3>{product.code}</h3>
-      <h4>Nome</h4>
-      <h3>{product.name}</h3>
+      <div className="info">
+        <div>{product.code}</div>
+
+        <div>{product.name}</div>
+      </div>
 
       <div className="btn">
-        <button className="upd" onClick={()=>setEditProduct(product)}>Editar</button>
-        <button className="del" onClick={() => deleteHandler(product.id)}>Deletar</button>
+        <button className="upd" onClick={() => setEditProduct(product)}>
+        <TiPencil />
+        </button>
+        <button className="del" onClick={() => deleteHandler(product.id)}>
+        <FaRegTrashAlt />
+        </button>
       </div>
     </StyledProductCard>
   );

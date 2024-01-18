@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledRegister = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
@@ -9,45 +9,47 @@ display: flex;
   padding: 20px;
   max-width: 460px;
   margin: 50px auto;
-  h1{
+  h1 {
     text-align: center;
     font-size: 44px;
   }
-  h2{
+  h2 {
     font-size: 28px;
   }
   form {
     display: flex;
     flex-direction: column;
-    label{
-        font-size: 18px;
+    label {
+      font-size: 18px;
     }
-    input{
-        padding: 5px;
+    input {
+      padding: 5px;
+      border: 2px solid var(--color-gray-400);
+      border-radius: 6px;
     }
-    button{
-        margin-top: 20px;
-        height: 30px;
-        background-color: var(--color-blue-300);
-        color: var(--color-gray-100);
+    button {
+      margin-top: 20px;
+      height: 30px;
+      background-color: var(--color-blue-300);
+      color: var(--color-gray-100);
     }
-    button:hover{
-        background-color: var(--color-blue-900);
+    button:hover {
+      background-color: var(--color-blue-900);
     }
-    p{
-        font-size: 12px;
-        color: red;
+    p {
+      font-size: 12px;
+      color: red;
     }
-}
-div{
+  }
+  div {
     display: flex;
     margin-top: 20px;
     justify-content: flex-end;
-    span{
-        margin-left: 5px;
-        color: var(--color-blue-900);
-        text-decoration: underline;
-        cursor: pointer;
+    span {
+      margin-left: 5px;
+      color: var(--color-blue-900);
+      text-decoration: underline;
+      cursor: pointer;
     }
-}
+  }
 `;

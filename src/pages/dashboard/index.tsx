@@ -76,14 +76,14 @@ export const Dashboard = () => {
 
       <ul>
         <section className="titles">
-          <div onClick={() => sortFieldToCode()}>
+          <div className="code" onClick={() => sortFieldToCode()}>
             Código{" "}
             <span onClick={() => changeSortDir()}>
               {sortField === "code" &&
                 (sortDir === "asc" ? <IoIosArrowDown /> : <IoIosArrowUp />)}
             </span>
           </div>
-          <div onClick={() => sortFieldToName()}>
+          <div className="name" onClick={() => sortFieldToName()}>
             Nome{" "}
             <span onClick={() => changeSortDir()}>
               {sortField === "name" &&

@@ -67,6 +67,7 @@ export const StyledDashboard = styled.div`
       position: relative;
       cursor: pointer;
 
+
       span {
         position: absolute;
         right: 5px;

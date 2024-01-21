@@ -26,6 +26,8 @@ export const StyledUpdateProductForm = styled.div`
     }
     span{
       margin-top: 10px;
+      color: var(--color-gray-900);
+      font-size: 20px;
     }
 
     label {
